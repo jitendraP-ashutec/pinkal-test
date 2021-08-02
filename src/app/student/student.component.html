@@ -1,0 +1,111 @@
+<br>
+<div class="row g-3  border border-white form-control box-shadow: 5px 10px:"  >
+  <div class=".bg-info">
+    <fieldset class="scheduler-border  border border-white" >
+      <legend>
+ <div class="border boerder-white">
+ <h6> Title:<input type="text" id="title" name="title"  value="" (click)="ontitle($event)" placeholder="title"></h6>
+</div>
+<br>
+   <h6> <div class="row">
+       <div class="col-xs-12 col-12 col-md-4 form-group" *ngIf="allDay">
+           Start Date: <input
+              class="form-control"
+              placeholder="Start date"
+              bsDatepicker
+              [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-red' }"  (click)="onsd($event)" name="startdate" >
+        </div>
+      </div> </h6>
+<h6> 
+<div class="row">
+  <div class="col-xs-12 col-12 col-md-4 form-group" *ngIf="allDay ">
+      End Date:<input
+        class="form-control"
+        placeholder="End date"
+        bsDatepicker
+        [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-red' }" (click)="oned($event)" name="enddate" >
+  </div>
+</div>
+</h6> 
+<br>
+<h6> 
+<div>
+  <label for="All the day" >All the day</label><br>
+  <input type="checkbox" id="All the day" name="All the day"
+        checked (click)="oncheck()">
+</div>
+</h6><div *ngIf="!allDay"><h6>
+<timepicker [(ngModel)]="mytime" [showMeridian]="ismeridian"></timepicker > 
+<pre class="alert alert-info">Time is: {{mytime}}</pre>
+<button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+</h6>
+</div> 
+ <h6> 
+ Location:<img width="17px" height="12px" src="assets/location image.jpg">
+ <select class="form-control col-xs-12 col-12 col-md-4 "  placeholder="location"  (click)="onloc($event)" >
+  <option>location</option>
+   <option>Ahmedabad</option>
+   <option>Palanpur</option>
+   <option>Surat</option>
+   <option>Vadodara</option>
+ </select>
+ </h6>
+ <h6>
+ <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">  
+  <table>  
+<tr>  
+   <td>Email: </td>  
+   <td>  
+     <input type="email" name="emailId" [ngModel]="user.emailId" (click)="onem($event)" [pattern]="emailPattern" #userEmail="ngModel" placeholder="email@domain.com">  
+     <div *ngIf="userEmail.errors && userForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'" >   
+       <div *ngIf="userEmail.errors.pattern" >   
+         Email not valid.  
+       </div>   
+     </div>  
+   </td>  
+   </tr>                  
+  </table>    
+ </form> 
+ </h6>
+<h6>
+ Description:<div class="form-group" >   
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" (click)="ondesr($event)"  name="description" ></textarea>
+ </div>
+ </h6>
+<h6> Guest-list:
+<div class="row">
+  <div class="col-md-3">
+    <input id="emailAddress" name="myname" type="email" multiple (click)="onclick($event)" placeholder="guest_list" #guest class="form-control">
+  </div>
+  <div class="col-md-3">
+    <button class="btn" (click)="onCreateGuest(guest)" >Add Guest</button>
+  </div>
+</div> 
+<br>
+ <div class="row">
+   <div class="col-md-10">
+     <table class="table table-bordered tabe-striped">
+       <thead class="thead-dark">
+         <tr>
+           <th> Index No</th>
+           <th>Guest Name</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let user of users;index as i">
+           <td>{{i+1}}</td>
+           <td> 
+             {{user.myname}}
+           </td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+ </div>
+</h6> 
+ <h6> 
+<button type="submit" class="knr" (click)="onSubmit('')">Submit</button></h6> 
+</legend>
+</fieldset>
+</div>
+</div>
